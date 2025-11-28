@@ -3,7 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	say("Bonjour, tout le monde!")
+	whatToSay := "Bonjour, tout le monde!"
+
+	say(whatToSay)
 }
 
 func say(whatToSay string) {
