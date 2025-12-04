@@ -3,15 +3,19 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
+	"time"
 )
 
-const prompt = "and press ENTER..."
+const prompt = "and don't type your number in, just press ENTER..."
 
 func main() {
-	var firstNumber = 10
-	var secondNumber = 2
-	var subtraction = 7
+	rand.Seed(time.Now().UnixNano())
+
+	var firstNumber = rand.Intn(8) + 2
+	var secondNumber = rand.Intn(8) + 2
+	var subtraction = rand.Intn(8) + 2
 	var answer int
 
 	reader := bufio.NewReader(os.Stdin)
