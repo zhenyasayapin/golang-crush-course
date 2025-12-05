@@ -10,14 +10,7 @@ import (
 
 const prompt = "and don't type your number in, just press ENTER..."
 
-func main() {
-	rand.Seed(time.Now().UnixNano())
-
-	var firstNumber = rand.Intn(8) + 2
-	var secondNumber = rand.Intn(8) + 2
-	var subtraction = rand.Intn(8) + 2
-	var answer int
-
+func playTheGame(firstNumber, secondNumber, subtraction, answer int) {
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Println("Guess the Number Game!")
@@ -39,7 +32,16 @@ func main() {
 	fmt.Println("Finally subtract", subtraction, prompt)
 	reader.ReadString('\n')
 
-	answer = (firstNumber * secondNumber) - subtraction
-
 	fmt.Println("The answer is:", answer)
+}
+
+func main() {
+	rand.Seed(time.Now().UnixNano())
+
+	var firstNumber = rand.Intn(8) + 2
+	var secondNumber = rand.Intn(8) + 2
+	var subtraction = rand.Intn(8) + 2
+	var answer = (firstNumber * secondNumber) - subtraction
+
+	playTheGame(firstNumber, secondNumber, subtraction, answer)
 }
