@@ -1,24 +1,11 @@
 package main
 
-import (
-	"fmt"
-	"myapp/packageone"
-)
+import "myapp/packageone"
+
+var myVar = "It is main package variable"
 
 func main() {
-	var one = "One"
+	var blockVar = "I am block scoped variable"
 
-	fmt.Println(one)
-
-	myFunction()
-
-	newString := packageone.PublicVar
-	fmt.Println("From package one", newString)
-
-	packageone.PublicFunction()
-}
-
-func myFunction() {
-	var one = "One from myFunction"
-	fmt.Println(one)
+	packageone.PrintMe(myVar, blockVar)
 }

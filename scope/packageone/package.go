@@ -1,10 +1,9 @@
 package packageone
 
-var privateVar = "I am private to package one"
-var PublicVar = "I am public to package one"
+import "fmt"
 
-func privateFunction() {
-}
+var PackageVar = "I am package one variable"
 
-func PublicFunction() {
+func PrintMe(myVar, blockBar string) {
+	fmt.Println(PackageVar, myVar, blockBar)
 }
