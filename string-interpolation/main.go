@@ -3,6 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/eiannone/keyboard"
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -25,11 +27,15 @@ func main() {
 	user.Name = readString("Enter your name:")
 	user.Age = readInt("How old are you?")
 	user.FavoriteNumber = readFloat("What is your favorite number?")
+	user.OwnsADog = readBool("Do you own a dog? (y/n)")
 
-	fmt.Printf("Your name is %s. You are %d years old. Your favorite number is %.2f.\n",
+	fmt.Printf(
+		"Your name is %s. You are %d years old. Your favorite number is %.2f. Owns a dog: %t\n",
 		user.Name,
 		user.Age,
-		user.FavoriteNumber)
+		user.FavoriteNumber,
+		user.OwnsADog,
+	)
 }
 
 func prompt() {
@@ -84,4 +90,33 @@ func readFloat(s string) float64 {
 	}
 
 	return num
+}
+
+func readBool(s string) bool {
+	err := keyboard.Open()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer func() {
+		_ = keyboard.Close()
+	}()
+
+	for {
+		fmt.Println(s)
+		char, _, err := keyboard.GetSingleKey()
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if strings.ToLower(string(char)) != "y" && strings.ToLower(string(char)) != "n" {
+			fmt.Println("Please, use only y/n")
+		} else if char == 'y' || char == 'Y' {
+			return true
+		} else if char == 'n' || char == 'N' {
+			return false
+		}
+	}
 }
