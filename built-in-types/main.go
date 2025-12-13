@@ -1,28 +1,26 @@
 package main
 
-import "log"
+import "fmt"
 
-var myInt int
-var myUint uint
-
-var myFloat32 float32
-var myFloat64 float64
+type Car struct {
+	NumberOfTires int
+	Luxury        bool
+	BucketSeats   bool
+	Make          string
+	Model         string
+	Year          int
+}
 
 func main() {
-	myInt = 10
-	myUint = 20
+	myCar := Car{
+		NumberOfTires: 4,
+		Luxury:        true,
+		BucketSeats:   true,
+		Make:          "Tesla",
+		Model:         "Model S",
+		Year:          2022,
+	}
 
-	myFloat32 = 30.5
-	myFloat64 = 40.7
-
-	log.Println(myInt, myUint, myFloat32, myFloat64)
-
-	myString := "Hello, Go!"
-
-	log.Println(myString)
-
-	var myBool = true
-	myBool = false
-
-	log.Println(myBool)
+	fmt.Printf("My car is a %d %s %s with %d tires. Luxury: %t, Bucket Seats: %t\n",
+		myCar.Year, myCar.Make, myCar.Model, myCar.NumberOfTires, myCar.Luxury, myCar.BucketSeats)
 }
