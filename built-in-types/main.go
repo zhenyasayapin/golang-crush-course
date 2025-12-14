@@ -2,25 +2,20 @@ package main
 
 import "fmt"
 
-type Car struct {
-	NumberOfTires int
-	Luxury        bool
-	BucketSeats   bool
-	Make          string
-	Model         string
-	Year          int
+func main() {
+	x := 10
+	pointer := &x
+
+	fmt.Println("Value of x:", x)
+	fmt.Println("Address of x:", pointer)
+
+	*pointer = 20
+	fmt.Println("New value of x:", x)
+
+	changeValue(pointer)
+	fmt.Println("Value of x after changeValue:", x)
 }
 
-func main() {
-	myCar := Car{
-		NumberOfTires: 4,
-		Luxury:        true,
-		BucketSeats:   true,
-		Make:          "Tesla",
-		Model:         "Model S",
-		Year:          2022,
-	}
-
-	fmt.Printf("My car is a %d %s %s with %d tires. Luxury: %t, Bucket Seats: %t\n",
-		myCar.Year, myCar.Make, myCar.Model, myCar.NumberOfTires, myCar.Luxury, myCar.BucketSeats)
+func changeValue(val *int) {
+	*val = 30
 }
