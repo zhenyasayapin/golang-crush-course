@@ -1,38 +1,28 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
 func main() {
-	var animals []string
-	animals = append(animals, "Dog")
-	animals = append(animals, "Cat")
-	animals = append(animals, "Fish")
-	animals = append(animals, "Rabbit")
+	intMap := make(map[string]int)
 
-	fmt.Println(animals)
+	intMap["one"] = 1
+	intMap["two"] = 2
+	intMap["three"] = 3
+	intMap["four"] = 4
+	intMap["five"] = 5
 
-	for i, x := range animals {
-		fmt.Println(i, x)
+	for key, value := range intMap {
+		fmt.Println(key, value)
 	}
 
-	fmt.Println("Element 0 is", animals[0])
-	fmt.Println("First two elements are", animals[0:2])
-	fmt.Println("The slice is", len(animals), "items long")
-	fmt.Println("Is it sorted?", sort.StringsAreSorted(animals))
-	sort.Strings(animals)
-	fmt.Println("Is it sorted now?", sort.StringsAreSorted(animals))
-	fmt.Println(animals)
+	delete(intMap, "four")
 
-	animals = DeleteFromSlice(animals, 1)
-	fmt.Println(animals)
-}
+	el, ok := intMap["four"]
 
-func DeleteFromSlice(a []string, i int) []string {
-	a[i] = a[len(a)-1]
-	a[len(a)-1] = ""
-	a = a[:len(a)-1]
-	return a
+	if ok {
+		fmt.Println(el, "is in map")
+	} else {
+		fmt.Println(el, "is not in map")
+	}
+
 }
