@@ -2,27 +2,37 @@ package main
 
 import "fmt"
 
+type Animal struct {
+	Name         string
+	Sound        string
+	NumberOfLegs int
+}
+
+func (a *Animal) Says() {
+	fmt.Printf("A %s says %s", a.Name, a.Sound)
+	fmt.Println()
+}
+
+func (a *Animal) HowManyLegs() {
+	fmt.Printf("A %s has %d number of legs", a.Name, a.NumberOfLegs)
+	fmt.Println()
+}
+
 func main() {
-	intMap := make(map[string]int)
+	var dog Animal
 
-	intMap["one"] = 1
-	intMap["two"] = 2
-	intMap["three"] = 3
-	intMap["four"] = 4
-	intMap["five"] = 5
+	dog.Name = "dog"
+	dog.Sound = "woof"
 
-	for key, value := range intMap {
-		fmt.Println(key, value)
+	dog.Says()
+
+	cat := Animal{
+		Name:         "cat",
+		Sound:        "meow",
+		NumberOfLegs: 4,
 	}
 
-	delete(intMap, "four")
+	cat.Says()
 
-	el, ok := intMap["four"]
-
-	if ok {
-		fmt.Println(el, "is in map")
-	} else {
-		fmt.Println(el, "is not in map")
-	}
-
+	cat.HowManyLegs()
 }
